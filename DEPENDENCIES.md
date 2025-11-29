@@ -19,14 +19,14 @@ React is configured as an **optional peer dependency**:
 
 ```json
 {
-  "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
-  },
-  "peerDependenciesMeta": {
-    "react": {
-      "optional": true
+    "peerDependencies": {
+        "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+    },
+    "peerDependenciesMeta": {
+        "react": {
+            "optional": true
+        }
     }
-  }
 }
 ```
 
@@ -34,30 +34,30 @@ React is configured as an **optional peer dependency**:
 
 1. **Without React:**
 
-   ```bash
-   npm install hgts
-   # Works perfectly! No warnings about missing React
-   ```
+    ```bash
+    npm install hgts
+    # Works perfectly! No warnings about missing React
+    ```
 
-   ```javascript
-   import { hgts } from "hgts";
-   hgts.t("key"); // ✅ Works
-   ```
+    ```javascript
+    import { hgts } from "hgts";
+    hgts.t("key"); // ✅ Works
+    ```
 
 2. **With React:**
 
-   ```bash
-   npm install hgts
-   # React is already in your project
-   ```
+    ```bash
+    npm install hgts
+    # React is already in your project
+    ```
 
-   ```javascript
-   import { hgts } from "hgts";
-   import { useTranslation } from "hgts/react";
+    ```javascript
+    import { hgts } from "hgts";
+    import { useTranslation } from "hgts/react";
 
-   hgts.t("key"); // ✅ Works
-   const { t } = useTranslation(); // ✅ Works
-   ```
+    hgts.t("key"); // ✅ Works
+    const { t } = useTranslation(); // ✅ Works
+    ```
 
 ## Development Dependencies
 
@@ -74,18 +74,18 @@ The package uses conditional exports to separate core and React functionality:
 
 ```json
 {
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
-      "import": "./dist/index.js"
-    },
-    "./react": {
-      "types": "./dist/react.d.ts",
-      "require": "./dist/react.js",
-      "import": "./dist/react.js"
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "require": "./dist/index.js",
+            "import": "./dist/index.js"
+        },
+        "./react": {
+            "types": "./dist/react.d.ts",
+            "require": "./dist/react.js",
+            "import": "./dist/react.js"
+        }
     }
-  }
 }
 ```
 

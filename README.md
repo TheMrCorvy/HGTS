@@ -49,18 +49,18 @@ const { hgts } = require("hgts");
 
 // 1. Setup translations
 hgts.setup({
-  resources: {
-    en: {
-      greeting: "Hello, {{name}}!",
-      farewell: "Goodbye!",
+    resources: {
+        en: {
+            greeting: "Hello, {{name}}!",
+            farewell: "Goodbye!",
+        },
+        es: {
+            greeting: "¡Hola, {{name}}!",
+            farewell: "¡Adiós!",
+        },
     },
-    es: {
-      greeting: "¡Hola, {{name}}!",
-      farewell: "¡Adiós!",
-    },
-  },
-  defaultLocale: "en",
-  fallbackLocale: "en",
+    defaultLocale: "en",
+    fallbackLocale: "en",
 });
 
 // 2. Use translations
@@ -77,21 +77,21 @@ console.log(hgts.t("greeting", { name: "Mundo" })); // "¡Hola, Mundo!"
 import { hgts } from "hgts";
 
 hgts.setup({
-  resources: {
-    en: {
-      welcome: "Welcome, {{name}}!",
-      nested: {
-        message: "This is nested",
-      },
+    resources: {
+        en: {
+            welcome: "Welcome, {{name}}!",
+            nested: {
+                message: "This is nested",
+            },
+        },
+        fr: {
+            welcome: "Bienvenue, {{name}}!",
+            nested: {
+                message: "C'est imbriqué",
+            },
+        },
     },
-    fr: {
-      welcome: "Bienvenue, {{name}}!",
-      nested: {
-        message: "C'est imbriqué",
-      },
-    },
-  },
-  defaultLocale: "en",
+    defaultLocale: "en",
 });
 
 console.log(hgts.t("welcome", { name: "User" })); // "Welcome, User!"
@@ -104,22 +104,26 @@ console.log(hgts.t("nested.message")); // "This is nested"
 import { useTranslation } from "hgts/react";
 
 function App() {
-  const { t, changeLanguage, language, availableLanguages } = useTranslation();
+    const { t, changeLanguage, language, availableLanguages } =
+        useTranslation();
 
-  return (
-    <div>
-      <h1>{t("greeting", { name: "User" })}</h1>
-      <p>Current language: {language}</p>
+    return (
+        <div>
+            <h1>{t("greeting", { name: "User" })}</h1>
+            <p>Current language: {language}</p>
 
-      <select onChange={(e) => changeLanguage(e.target.value)} value={language}>
-        {availableLanguages().map((lang) => (
-          <option key={lang} value={lang}>
-            {lang}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
+            <select
+                onChange={(e) => changeLanguage(e.target.value)}
+                value={language}
+            >
+                {availableLanguages().map((lang) => (
+                    <option key={lang} value={lang}>
+                        {lang}
+                    </option>
+                ))}
+            </select>
+        </div>
+    );
 }
 ```
 
@@ -131,15 +135,15 @@ import { hgts } from "hgts";
 import App from "./App";
 
 hgts.setup({
-  resources: {
-    en: {
-      /* ... */
+    resources: {
+        en: {
+            /* ... */
+        },
+        es: {
+            /* ... */
+        },
     },
-    es: {
-      /* ... */
-    },
-  },
-  defaultLocale: "en",
+    defaultLocale: "en",
 });
 
 ReactDOM.render(<App />, document.getElementById("root"));
@@ -258,15 +262,15 @@ React hook that provides translation functionality with automatic re-rendering o
 
 ```tsx
 function MyComponent() {
-  const { t, changeLanguage, language } = useTranslation();
+    const { t, changeLanguage, language } = useTranslation();
 
-  return (
-    <div>
-      <h1>{t("title")}</h1>
-      <button onClick={() => changeLanguage("es")}>Español</button>
-      <p>Current: {language}</p>
-    </div>
-  );
+    return (
+        <div>
+            <h1>{t("title")}</h1>
+            <button onClick={() => changeLanguage("es")}>Español</button>
+            <p>Current: {language}</p>
+        </div>
+    );
 }
 ```
 
@@ -276,19 +280,19 @@ function MyComponent() {
 
 ```javascript
 hgts.setup({
-  resources: {
-    en: {
-      user: {
-        profile: {
-          title: "User Profile",
-          settings: {
-            privacy: "Privacy Settings",
-          },
+    resources: {
+        en: {
+            user: {
+                profile: {
+                    title: "User Profile",
+                    settings: {
+                        privacy: "Privacy Settings",
+                    },
+                },
+            },
         },
-      },
     },
-  },
-  defaultLocale: "en",
+    defaultLocale: "en",
 });
 
 console.log(hgts.t("user.profile.title")); // "User Profile"
@@ -299,13 +303,13 @@ console.log(hgts.t("user.profile.settings.privacy")); // "Privacy Settings"
 
 ```javascript
 hgts.setup({
-  resources: {
-    en: {
-      cart: "You have {{count}} items totaling ${{total}}",
-      greeting: "Hello, {{firstName}} {{lastName}}!",
+    resources: {
+        en: {
+            cart: "You have {{count}} items totaling ${{total}}",
+            greeting: "Hello, {{firstName}} {{lastName}}!",
+        },
     },
-  },
-  defaultLocale: "en",
+    defaultLocale: "en",
 });
 
 hgts.t("cart", { count: 5, total: 99.99 });
@@ -332,28 +336,28 @@ HGTS supports smart pluralization with language-specific rules using the native 
 
 ```javascript
 hgts.setup({
-  resources: {
-    en: {
-      items: {
-        zero: "No items",
-        one: "{{count}} item",
-        other: "{{count}} items",
-      },
-      notifications: {
-        zero: "You have no notifications",
-        one: "You have {{count}} notification",
-        other: "You have {{count}} notifications",
-      },
+    resources: {
+        en: {
+            items: {
+                zero: "No items",
+                one: "{{count}} item",
+                other: "{{count}} items",
+            },
+            notifications: {
+                zero: "You have no notifications",
+                one: "You have {{count}} notification",
+                other: "You have {{count}} notifications",
+            },
+        },
+        es: {
+            items: {
+                zero: "Sin artículos",
+                one: "{{count}} artículo",
+                other: "{{count}} artículos",
+            },
+        },
     },
-    es: {
-      items: {
-        zero: "Sin artículos",
-        one: "{{count}} artículo",
-        other: "{{count}} artículos",
-      },
-    },
-  },
-  defaultLocale: "en",
+    defaultLocale: "en",
 });
 
 // English pluralization
@@ -380,15 +384,15 @@ hgts.t("items", { count: 5 }); // "5 artículos"
 
 ```javascript
 hgts.setup({
-  resources: {
-    /* ... */
-  },
-  pluralRule: (count, locale) => {
-    // Custom logic
-    if (count === 0) return "zero";
-    if (count === 1) return "one";
-    return "other";
-  },
+    resources: {
+        /* ... */
+    },
+    pluralRule: (count, locale) => {
+        // Custom logic
+        if (count === 0) return "zero";
+        if (count === 1) return "one";
+        return "other";
+    },
 });
 ```
 
@@ -396,18 +400,18 @@ hgts.setup({
 
 ```javascript
 hgts.setup({
-  resources: {
-    en: {
-      common: "Available in English",
-      onlyEnglish: "Only in English",
+    resources: {
+        en: {
+            common: "Available in English",
+            onlyEnglish: "Only in English",
+        },
+        es: {
+            common: "Disponible en español",
+            // 'onlyEnglish' is missing
+        },
     },
-    es: {
-      common: "Disponible en español",
-      // 'onlyEnglish' is missing
-    },
-  },
-  defaultLocale: "en",
-  fallbackLocale: "en",
+    defaultLocale: "en",
+    fallbackLocale: "en",
 });
 
 hgts.changeLanguage("es");
@@ -419,21 +423,21 @@ hgts.t("onlyEnglish"); // "Only in English" (falls back to English)
 
 ```tsx
 function LanguageSwitcher() {
-  const { changeLanguage, language, availableLanguages } = useTranslation();
+    const { changeLanguage, language, availableLanguages } = useTranslation();
 
-  return (
-    <div className="language-switcher">
-      {availableLanguages().map((lang) => (
-        <button
-          key={lang}
-          onClick={() => changeLanguage(lang)}
-          className={language === lang ? "active" : ""}
-        >
-          {lang.toUpperCase()}
-        </button>
-      ))}
-    </div>
-  );
+    return (
+        <div className="language-switcher">
+            {availableLanguages().map((lang) => (
+                <button
+                    key={lang}
+                    onClick={() => changeLanguage(lang)}
+                    className={language === lang ? "active" : ""}
+                >
+                    {lang.toUpperCase()}
+                </button>
+            ))}
+        </div>
+    );
 }
 ```
 
@@ -449,17 +453,17 @@ Thanks to the **Singleton pattern**, you only need to call `setup()` once at you
 import { hgts } from "hgts";
 
 hgts.setup({
-  resources: {
-    en: {
-      greeting: "Hello!",
-      user: { profile: "User Profile" },
+    resources: {
+        en: {
+            greeting: "Hello!",
+            user: { profile: "User Profile" },
+        },
+        es: {
+            greeting: "¡Hola!",
+            user: { profile: "Perfil de Usuario" },
+        },
     },
-    es: {
-      greeting: "¡Hola!",
-      user: { profile: "Perfil de Usuario" },
-    },
-  },
-  defaultLocale: "en",
+    defaultLocale: "en",
 });
 ```
 
@@ -469,9 +473,9 @@ hgts.setup({
 import { hgts } from "hgts";
 
 export class UserService {
-  getProfileTitle(): string {
-    return hgts.t("user.profile"); // Works! No setup needed
-  }
+    getProfileTitle(): string {
+        return hgts.t("user.profile"); // Works! No setup needed
+    }
 }
 ```
 
@@ -493,11 +497,11 @@ console.log(service.getProfileTitle()); // "User Profile"
 import { hgts } from "hgts";
 
 hgts.setup({
-  resources: {
-    en: { title: "My App", nav: { home: "Home" } },
-    es: { title: "Mi App", nav: { home: "Inicio" } },
-  },
-  defaultLocale: "en",
+    resources: {
+        en: { title: "My App", nav: { home: "Home" } },
+        es: { title: "Mi App", nav: { home: "Inicio" } },
+    },
+    defaultLocale: "en",
 });
 ```
 
@@ -507,8 +511,8 @@ hgts.setup({
 import { useTranslation } from "hgts/react";
 
 export function Header() {
-  const { t } = useTranslation();
-  return <h1>{t("title")}</h1>; // Works! No setup needed
+    const { t } = useTranslation();
+    return <h1>{t("title")}</h1>; // Works! No setup needed
 }
 ```
 
@@ -534,30 +538,30 @@ HGTS is written in TypeScript and includes full type definitions.
 
 ```typescript
 import {
-  hgts,
-  HGTSOptions,
-  Translations,
-  InterpolationParams,
-  PluralTranslation,
+    hgts,
+    HGTSOptions,
+    Translations,
+    InterpolationParams,
+    PluralTranslation,
 } from "hgts";
 
 const options: HGTSOptions = {
-  resources: {
-    en: {
-      greeting: "Hello!",
-      items: {
-        zero: "No items",
-        one: "{{count}} item",
-        other: "{{count}} items",
-      },
+    resources: {
+        en: {
+            greeting: "Hello!",
+            items: {
+                zero: "No items",
+                one: "{{count}} item",
+                other: "{{count}} items",
+            },
+        },
     },
-  },
-  defaultLocale: "en",
+    defaultLocale: "en",
 };
 
 const params: InterpolationParams = {
-  name: "User",
-  count: 5,
+    name: "User",
+    count: 5,
 };
 
 hgts.setup(options);

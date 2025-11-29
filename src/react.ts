@@ -18,37 +18,37 @@ import { InterpolationParams } from "./types";
  * }
  */
 export function useTranslation() {
-  const [language, setLanguage] = useState(hgts.getLanguage());
+    const [language, setLanguage] = useState(hgts.getLanguage());
 
-  /**
-   * Translate a key with optional interpolation
-   */
-  const t = useCallback(
-    (key: string, params?: InterpolationParams): string => {
-      return hgts.t(key, params);
-    },
-    [language]
-  );
+    /**
+     * Translate a key with optional interpolation
+     */
+    const t = useCallback(
+        (key: string, params?: InterpolationParams): string => {
+            return hgts.t(key, params);
+        },
+        [language]
+    );
 
-  /**
-   * Change the current language and trigger re-render
-   */
-  const changeLanguage = useCallback((locale: string): void => {
-    hgts.changeLanguage(locale);
-    setLanguage(locale);
-  }, []);
+    /**
+     * Change the current language and trigger re-render
+     */
+    const changeLanguage = useCallback((locale: string): void => {
+        hgts.changeLanguage(locale);
+        setLanguage(locale);
+    }, []);
 
-  /**
-   * Get available languages
-   */
-  const availableLanguages = useCallback((): string[] => {
-    return hgts.getAvailableLanguages();
-  }, []);
+    /**
+     * Get available languages
+     */
+    const availableLanguages = useCallback((): string[] => {
+        return hgts.getAvailableLanguages();
+    }, []);
 
-  return {
-    t,
-    changeLanguage,
-    language,
-    availableLanguages,
-  };
+    return {
+        t,
+        changeLanguage,
+        language,
+        availableLanguages,
+    };
 }

@@ -11,10 +11,10 @@ import "./config/i18n.config";
 // Step 2: Import modules that use translations
 import { UserService } from "./modules/user.service";
 import {
-  getGreeting,
-  getFarewell,
-  getCurrentLanguage,
-  switchLanguage,
+    getGreeting,
+    getFarewell,
+    getCurrentLanguage,
+    switchLanguage,
 } from "./modules/greeting.utils";
 
 console.log("\n=== Multi-File Example ===\n");

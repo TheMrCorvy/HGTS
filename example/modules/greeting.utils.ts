@@ -6,18 +6,18 @@
 import { hgts } from "hgts";
 
 export function getGreeting(): string {
-  return hgts.t("greeting");
+    return hgts.t("greeting");
 }
 
 export function getFarewell(): string {
-  return hgts.t("farewell");
+    return hgts.t("farewell");
 }
 
 export function getCurrentLanguage(): string {
-  return hgts.getLanguage();
+    return hgts.getLanguage();
 }
 
 export function switchLanguage(locale: string): void {
-  hgts.changeLanguage(locale);
-  console.log(`Language changed to: ${locale}`);
+    hgts.changeLanguage(locale);
+    console.log(`Language changed to: ${locale}`);
 }

@@ -2,79 +2,79 @@ import { hgts } from "hgts"; // In a real project, you would import from 'hgts'
 
 // 1. Setup the translations with multiple languages
 hgts.setup({
-  resources: {
-    en: {
-      greeting: "Hello, World!",
-      farewell: "Goodbye, World!",
-      welcome: "Welcome, {{name}}!",
-      itemCount: "You have {{count}} items in your cart.",
-      // Plural forms
-      items: {
-        zero: "No items",
-        one: "{{count}} item",
-        other: "{{count}} items",
-      },
-      notifications: {
-        zero: "You have no notifications",
-        one: "You have {{count}} notification",
-        other: "You have {{count}} notifications",
-      },
-      nested: {
-        message: "This is a nested message.",
-        deep: {
-          value: "Deep nested value",
+    resources: {
+        en: {
+            greeting: "Hello, World!",
+            farewell: "Goodbye, World!",
+            welcome: "Welcome, {{name}}!",
+            itemCount: "You have {{count}} items in your cart.",
+            // Plural forms
+            items: {
+                zero: "No items",
+                one: "{{count}} item",
+                other: "{{count}} items",
+            },
+            notifications: {
+                zero: "You have no notifications",
+                one: "You have {{count}} notification",
+                other: "You have {{count}} notifications",
+            },
+            nested: {
+                message: "This is a nested message.",
+                deep: {
+                    value: "Deep nested value",
+                },
+            },
         },
-      },
-    },
-    es: {
-      greeting: "¡Hola, Mundo!",
-      farewell: "¡Adiós, Mundo!",
-      welcome: "¡Bienvenido, {{name}}!",
-      itemCount: "Tienes {{count}} artículos en tu carrito.",
-      // Plural forms in Spanish
-      items: {
-        zero: "Sin artículos",
-        one: "{{count}} artículo",
-        other: "{{count}} artículos",
-      },
-      notifications: {
-        zero: "No tienes notificaciones",
-        one: "Tienes {{count}} notificación",
-        other: "Tienes {{count}} notificaciones",
-      },
-      nested: {
-        message: "Este es un mensaje anidado.",
-        deep: {
-          value: "Valor profundamente anidado",
+        es: {
+            greeting: "¡Hola, Mundo!",
+            farewell: "¡Adiós, Mundo!",
+            welcome: "¡Bienvenido, {{name}}!",
+            itemCount: "Tienes {{count}} artículos en tu carrito.",
+            // Plural forms in Spanish
+            items: {
+                zero: "Sin artículos",
+                one: "{{count}} artículo",
+                other: "{{count}} artículos",
+            },
+            notifications: {
+                zero: "No tienes notificaciones",
+                one: "Tienes {{count}} notificación",
+                other: "Tienes {{count}} notificaciones",
+            },
+            nested: {
+                message: "Este es un mensaje anidado.",
+                deep: {
+                    value: "Valor profundamente anidado",
+                },
+            },
         },
-      },
-    },
-    fr: {
-      greeting: "Bonjour, le Monde!",
-      farewell: "Au revoir, le Monde!",
-      welcome: "Bienvenue, {{name}}!",
-      itemCount: "Vous avez {{count}} articles dans votre panier.",
-      // Plural forms in French
-      items: {
-        zero: "Aucun article",
-        one: "{{count}} article",
-        other: "{{count}} articles",
-      },
-      notifications: {
-        zero: "Vous n'avez aucune notification",
-        one: "Vous avez {{count}} notification",
-        other: "Vous avez {{count}} notifications",
-      },
-      nested: {
-        message: "Ceci est un message imbriqué.",
-        deep: {
-          value: "Valeur profondément imbriquée",
+        fr: {
+            greeting: "Bonjour, le Monde!",
+            farewell: "Au revoir, le Monde!",
+            welcome: "Bienvenue, {{name}}!",
+            itemCount: "Vous avez {{count}} articles dans votre panier.",
+            // Plural forms in French
+            items: {
+                zero: "Aucun article",
+                one: "{{count}} article",
+                other: "{{count}} articles",
+            },
+            notifications: {
+                zero: "Vous n'avez aucune notification",
+                one: "Vous avez {{count}} notification",
+                other: "Vous avez {{count}} notifications",
+            },
+            nested: {
+                message: "Ceci est un message imbriqué.",
+                deep: {
+                    value: "Valeur profondément imbriquée",
+                },
+            },
         },
-      },
     },
-  },
-  defaultLocale: "en",
-  fallbackLocale: "en",
+    defaultLocale: "en",
+    fallbackLocale: "en",
 });
 
 // 2. Use the t function with default language (English)
