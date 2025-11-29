@@ -135,6 +135,16 @@ hgts.setup({
 ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
+**Note:** Thanks to the Singleton pattern, you only need to call `setup()` once in your entire application. All other files can import and use `hgts` or `useTranslation()` without calling setup again. See the [multi-file examples](#multi-file-usage) below.
+
+},
+defaultLocale: "en",
+});
+
+ReactDOM.render(<App />, document.getElementById("root"));
+
+````
+
 ## 📖 API Reference
 
 ### `hgts.setup(options)`
@@ -160,7 +170,7 @@ hgts.setup({
   defaultLocale: "en",
   fallbackLocale: "en",
 });
-```
+````
 
 ### `hgts.t(key, params?)`
 
@@ -416,6 +426,97 @@ function LanguageSwitcher() {
   );
 }
 ```
+
+## 📁 Multi-File Usage
+
+Thanks to the **Singleton pattern**, you only need to call `setup()` once at your application's entry point. All other files can use `hgts` or `useTranslation()` without calling setup again.
+
+### Node.js / TypeScript Example
+
+**File: `config/i18n.config.ts`** (Setup once)
+
+```typescript
+import { hgts } from "hgts";
+
+hgts.setup({
+  resources: {
+    en: {
+      greeting: "Hello!",
+      user: { profile: "User Profile" },
+    },
+    es: {
+      greeting: "¡Hola!",
+      user: { profile: "Perfil de Usuario" },
+    },
+  },
+  defaultLocale: "en",
+});
+```
+
+**File: `services/user.service.ts`** (Use anywhere)
+
+```typescript
+import { hgts } from "hgts";
+
+export class UserService {
+  getProfileTitle(): string {
+    return hgts.t("user.profile"); // Works! No setup needed
+  }
+}
+```
+
+**File: `main.ts`** (Entry point)
+
+```typescript
+import "./config/i18n.config"; // Import config first
+import { UserService } from "./services/user.service";
+
+const service = new UserService();
+console.log(service.getProfileTitle()); // "User Profile"
+```
+
+### React Example
+
+**File: `i18n/config.ts`** (Setup once)
+
+```typescript
+import { hgts } from "hgts";
+
+hgts.setup({
+  resources: {
+    en: { title: "My App", nav: { home: "Home" } },
+    es: { title: "Mi App", nav: { home: "Inicio" } },
+  },
+  defaultLocale: "en",
+});
+```
+
+**File: `components/Header.tsx`** (Use anywhere)
+
+```tsx
+import { useTranslation } from "hgts/react";
+
+export function Header() {
+  const { t } = useTranslation();
+  return <h1>{t("title")}</h1>; // Works! No setup needed
+}
+```
+
+**File: `index.tsx`** (Entry point)
+
+```tsx
+import "./i18n/config"; // Import config first
+import { Header } from "./components/Header";
+
+ReactDOM.render(<Header />, root);
+```
+
+**Key Points:**
+
+- ✅ Call `setup()` once at the application entry point
+- ✅ Import the config file before any components that use translations
+- ✅ All files share the same HGTS instance
+- ✅ Changes to language affect the entire application
 
 ## 🔧 TypeScript Support
 
