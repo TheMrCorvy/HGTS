@@ -1,0 +1,55 @@
+{
+  "name": "hgts",
+  "version": "1.0.0",
+  "description": "The holy grail translation system from Fate series brought to real life by the Chaldea Foundation.",
+  "keywords": [
+    "translation",
+    "internationalization"
+  ],
+  "homepage": "https://github.com/TheMrCorvy/HGTS#readme",
+  "bugs": {
+    "url": "https://github.com/TheMrCorvy/HGTS/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheMrCorvy/HGTS.git"
+  },
+  "license": "ISC",
+  "author": "TheMrCorvy",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "require": "./dist/react.js",
+      "import": "./dist/react.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@types/react": "^18.2.0",
+    "react": "^18.2.0",
+    "typescript": "^5.4.5"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  }
+}
