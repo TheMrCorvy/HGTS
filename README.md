@@ -30,6 +30,16 @@ yarn add hgts
 pnpm add hgts
 ```
 
+### For React Projects
+
+If you want to use the React hook (`useTranslation`), React is already a peer dependency. Just make sure you have React installed in your project:
+
+```bash
+npm install react
+```
+
+**Note:** The React hook is completely optional. HGTS works perfectly in Node.js, vanilla JavaScript, or any other environment without React.
+
 ## 🚀 Quick Start
 
 ### Basic Usage (Node.js / JavaScript)
@@ -560,19 +570,46 @@ const pluralTranslation: string = hgts.t("items", { count: 5 });
 ```
 hgts/
 ├── src/
-│   ├── index.ts        # Core HGTS class
+│   ├── index.ts        # Core HGTS class (zero dependencies)
 │   ├── types.ts        # TypeScript type definitions
-│   └── react.ts        # React hook (optional)
+│   └── react.ts        # React hook (optional, peer dependency)
 ├── dist/               # Compiled output
 ├── example/
 │   ├── js-example.js   # JavaScript example
-│   └── ts-example.ts   # TypeScript example
+│   ├── ts-example.ts   # TypeScript example
+│   └── react-example.tsx   # React example
 └── package.json
 ```
+
+## 🎯 Dependencies
+
+- **Zero runtime dependencies** - HGTS core has no dependencies
+- **React (optional)** - Only needed if you use `hgts/react` hook
+- **TypeScript types included** - No need for `@types` packages
 
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+### Development
+
+```bash
+# Install dependencies
+npm install
+
+# Build the project
+npm run build
+
+# Check dependencies (ensures zero runtime deps)
+npm run check:deps
+```
+
+### Guidelines
+
+- Keep the core library with **zero runtime dependencies**
+- Add React-specific features only to `src/react.ts`
+- Run `npm run check:deps` before committing
+- Update documentation for new features
 
 ## 📄 License
 
