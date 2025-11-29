@@ -6,15 +6,15 @@ A lightweight, type-safe internationalization (i18n) library for JavaScript and 
 
 ## ✨ Features
 
-- 🌍 **Multi-language support** - Seamlessly switch between multiple languages
-- 🔄 **Automatic fallback** - Falls back to default language when translations are missing
-- 📝 **Variable interpolation** - Dynamic values in your translations using `{{variable}}` syntax
-- 🔢 **Pluralization** - Smart singular/plural handling with language-specific rules
-- 🎯 **Type-safe** - Full TypeScript support with type definitions
-- 🪝 **React Hook** - Built-in `useTranslation()` hook for React applications
-- 🔑 **Nested keys** - Support for deeply nested translation objects with dot notation
-- 🎭 **Singleton pattern** - Global instance accessible throughout your application
-- 🪶 **Lightweight** - Zero dependencies (React hook is optional)
+- 🌍 **Multi-language support** - Seamlessly switch between multiple languages.
+- 🔄 **Automatic fallback** - Falls back to default language when translations are missing.
+- 📝 **Variable interpolation** - Dynamic values in your translations using `{{variable}}` syntax.
+- 🔢 **Pluralization** - Smart singular/plural handling with language-specific rules.
+- 🎯 **Type-safe** - Full TypeScript support with type definitions.
+- 🪝 **React Hook** - Built-in `useTranslation()` hook for React applications.
+- 🔑 **Nested keys** - Support for deeply nested translation objects with dot notation.
+- 🎭 **Singleton pattern** - Global instance accessible throughout your application.
+- 🪶 **Lightweight** - Zero dependencies (React hook is optional).
 
 ## 📦 Installation
 
@@ -149,42 +149,34 @@ hgts.setup({
 ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
-**Note:** Thanks to the Singleton pattern, you only need to call `setup()` once in your entire application. All other files can import and use `hgts` or `useTranslation()` without calling setup again. See the [multi-file examples](#multi-file-usage) below.
-
-},
-defaultLocale: "en",
-});
-
-ReactDOM.render(<App />, document.getElementById("root"));
-
-````
+**Note:** Thanks to the Singleton pattern, you only need to call `setup()` once in your entire application. All other files can import and use `hgts` or `useTranslation()` without calling setup again.
 
 ## 📖 API Reference
 
 ### `hgts.setup(options)`
 
-Initialize HGTS with your translation resources.
+Initialize the HGTS with your translation resources.
 
 **Parameters:**
 
-- `options.resources` (required): Object containing translations organized by locale
-- `options.defaultLocale` (optional): Default language code (default: `'en'`)
-- `options.fallbackLocale` (optional): Fallback language when translation is missing (default: same as `defaultLocale`)
-- `options.pluralRule` (optional): Custom function for plural form resolution
+- `options.resources` (required): Object containing translations organized by locale.
+- `options.defaultLocale` (optional): Default language code (default: `'en'`).
+- `options.fallbackLocale` (optional): Fallback language when translation is missing (default: same as `defaultLocale`).
+- `options.pluralRule` (optional): Custom function for plural form resolution.
 
 **Example:**
 
 ```javascript
 hgts.setup({
-  resources: {
-    en: { greeting: "Hello!" },
-    es: { greeting: "¡Hola!" },
-    fr: { greeting: "Bonjour!" },
-  },
-  defaultLocale: "en",
-  fallbackLocale: "en",
+    resources: {
+        en: { greeting: "Hello!" },
+        es: { greeting: "¡Hola!" },
+        fr: { greeting: "Bonjour!" },
+    },
+    defaultLocale: "en",
+    fallbackLocale: "en",
 });
-````
+```
 
 ### `hgts.t(key, params?)`
 
@@ -192,10 +184,10 @@ Translate a key with optional variable interpolation.
 
 **Parameters:**
 
-- `key`: Translation key (supports dot notation for nested keys)
-- `params` (optional): Object with variables for interpolation. Use `count` for pluralization
+- `key`: Translation key (supports dot notation for nested keys).
+- `params` (optional): Object with variables for interpolation. Use `count` for pluralization.
 
-**Returns:** Translated string or the key if translation not found
+**Returns:** Translated string or the key if translation not found.
 
 **Examples:**
 
@@ -374,11 +366,11 @@ hgts.t("items", { count: 5 }); // "5 artículos"
 
 **How it works:**
 
-- When you pass a `count` parameter, HGTS automatically detects this is a plural translation
-- It uses `Intl.PluralRules` to determine which plural form to use based on the current language
-- Different languages have different pluralization rules (e.g., English: one/other, Polish: one/few/many/other)
-- Falls back to `other` if the specific form is not provided
-- You can provide a custom plural rule function in setup options if needed
+- When you pass a `count` parameter, HGTS automatically detects this is a plural translation.
+- It uses `Intl.PluralRules` to determine which plural form to use based on the current language.
+- Different languages have different pluralization rules (e.g., English: one/other, Polish: one/few/many/other).
+- Falls back to `other` if the specific form is not provided.
+- You can provide a custom plural rule function in setup options if needed.
 
 **Custom plural rules (advanced):**
 
@@ -534,7 +526,7 @@ ReactDOM.render(<Header />, root);
 
 ## 🔧 TypeScript Support
 
-HGTS is written in TypeScript and includes full type definitions.
+The HGTS is written in TypeScript and includes full type definitions.
 
 ```typescript
 import {
@@ -574,22 +566,22 @@ const pluralTranslation: string = hgts.t("items", { count: 5 });
 ```
 hgts/
 ├── src/
-│   ├── index.ts        # Core HGTS class (zero dependencies)
-│   ├── types.ts        # TypeScript type definitions
-│   └── react.ts        # React hook (optional, peer dependency)
-├── dist/               # Compiled output
+│   ├── index.ts            # Core HGTS class (zero dependencies)
+│   ├── types.ts            # TypeScript type definitions
+│   └── react.ts            # React hook (optional, peer dependency)
+├── dist/                   # Compiled output
 ├── example/
-│   ├── js-example.js   # JavaScript example
-│   ├── ts-example.ts   # TypeScript example
+│   ├── js-example.js       # JavaScript example
+│   ├── ts-example.ts       # TypeScript example
 │   └── react-example.tsx   # React example
 └── package.json
 ```
 
 ## 🎯 Dependencies
 
-- **Zero runtime dependencies** - HGTS core has no dependencies
-- **React (optional)** - Only needed if you use `hgts/react` hook
-- **TypeScript types included** - No need for `@types` packages
+- **Zero runtime dependencies** - The HGTS core has no dependencies.
+- **React (optional)** - Only needed if you use `hgts/react` hook.
+- **TypeScript types included** - No need for `@types` packages.
 
 ## 🤝 Contributing
 
@@ -625,4 +617,4 @@ Inspired by the Holy Grail from the Fate series - a universal translator that en
 
 ---
 
-Made with ❤️ by the Chaldea Foundation
+Made by the Chaldea Foundation to ensure the persistance of humanity in the near future.
