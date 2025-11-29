@@ -17,6 +17,17 @@ hgts.setup({
       },
       welcome: "Welcome, {{name}}!",
       userStats: "You have {{posts}} posts and {{followers}} followers",
+      // Plural forms
+      messages: {
+        zero: "No new messages",
+        one: "{{count}} new message",
+        other: "{{count}} new messages",
+      },
+      likes: {
+        zero: "No likes yet",
+        one: "{{count}} like",
+        other: "{{count}} likes",
+      },
       buttons: {
         changeLanguage: "Change Language",
         submit: "Submit",
@@ -34,6 +45,17 @@ hgts.setup({
       },
       welcome: "¡Bienvenido, {{name}}!",
       userStats: "Tienes {{posts}} publicaciones y {{followers}} seguidores",
+      // Plural forms in Spanish
+      messages: {
+        zero: "Sin mensajes nuevos",
+        one: "{{count}} mensaje nuevo",
+        other: "{{count}} mensajes nuevos",
+      },
+      likes: {
+        zero: "Sin me gusta aún",
+        one: "{{count}} me gusta",
+        other: "{{count}} me gusta",
+      },
       buttons: {
         changeLanguage: "Cambiar Idioma",
         submit: "Enviar",
@@ -51,6 +73,17 @@ hgts.setup({
       },
       welcome: "Bienvenue, {{name}}!",
       userStats: "Vous avez {{posts}} publications et {{followers}} abonnés",
+      // Plural forms in French
+      messages: {
+        zero: "Aucun nouveau message",
+        one: "{{count}} nouveau message",
+        other: "{{count}} nouveaux messages",
+      },
+      likes: {
+        zero: "Aucun j'aime pour l'instant",
+        one: "{{count}} j'aime",
+        other: "{{count}} j'aime",
+      },
       buttons: {
         changeLanguage: "Changer de Langue",
         submit: "Soumettre",
@@ -99,6 +132,35 @@ function Navigation() {
   );
 }
 
+// Message Counter Component (demonstrates pluralization)
+function MessageCounter({ count }: { count: number }) {
+  const { t } = useTranslation();
+
+  return (
+    <div
+      style={{
+        padding: "15px",
+        margin: "10px 0",
+        backgroundColor: "#f0f0f0",
+        borderRadius: "5px",
+      }}
+    >
+      <strong>{t("messages", { count })}</strong>
+    </div>
+  );
+}
+
+// Like Counter Component (demonstrates pluralization)
+function LikeCounter({ count }: { count: number }) {
+  const { t } = useTranslation();
+
+  return (
+    <div style={{ margin: "10px 0", fontSize: "14px", color: "#666" }}>
+      ❤️ {t("likes", { count })}
+    </div>
+  );
+}
+
 // User Profile Component
 function UserProfile({
   name,
@@ -142,6 +204,18 @@ function App() {
 
       <main>
         <UserProfile name="John Doe" posts={42} followers={1337} />
+
+        {/* Pluralization examples */}
+        <div style={{ margin: "20px 0" }}>
+          <h3>Pluralization Examples:</h3>
+          <MessageCounter count={0} />
+          <MessageCounter count={1} />
+          <MessageCounter count={5} />
+
+          <LikeCounter count={0} />
+          <LikeCounter count={1} />
+          <LikeCounter count={42} />
+        </div>
 
         <button style={{ padding: "10px 20px", marginTop: "20px" }}>
           {t("buttons.submit")}

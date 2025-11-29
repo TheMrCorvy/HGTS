@@ -8,6 +8,17 @@ hgts.setup({
       farewell: "Goodbye, World!",
       welcome: "Welcome, {{name}}!",
       itemCount: "You have {{count}} items in your cart.",
+      // Plural forms
+      items: {
+        zero: "No items",
+        one: "{{count}} item",
+        other: "{{count}} items",
+      },
+      notifications: {
+        zero: "You have no notifications",
+        one: "You have {{count}} notification",
+        other: "You have {{count}} notifications",
+      },
       nested: {
         message: "This is a nested message.",
         deep: {
@@ -20,6 +31,17 @@ hgts.setup({
       farewell: "¡Adiós, Mundo!",
       welcome: "¡Bienvenido, {{name}}!",
       itemCount: "Tienes {{count}} artículos en tu carrito.",
+      // Plural forms in Spanish
+      items: {
+        zero: "Sin artículos",
+        one: "{{count}} artículo",
+        other: "{{count}} artículos",
+      },
+      notifications: {
+        zero: "No tienes notificaciones",
+        one: "Tienes {{count}} notificación",
+        other: "Tienes {{count}} notificaciones",
+      },
       nested: {
         message: "Este es un mensaje anidado.",
         deep: {
@@ -32,6 +54,17 @@ hgts.setup({
       farewell: "Au revoir, le Monde!",
       welcome: "Bienvenue, {{name}}!",
       itemCount: "Vous avez {{count}} articles dans votre panier.",
+      // Plural forms in French
+      items: {
+        zero: "Aucun article",
+        one: "{{count}} article",
+        other: "{{count}} articles",
+      },
+      notifications: {
+        zero: "Vous n'avez aucune notification",
+        one: "Vous avez {{count}} notification",
+        other: "Vous avez {{count}} notifications",
+      },
       nested: {
         message: "Ceci est un message imbriqué.",
         deep: {
@@ -74,3 +107,27 @@ console.log(hgts.getAvailableLanguages()); // Output: ['en', 'es', 'fr']
 // 8. Test fallback (key doesn't exist)
 hgts.changeLanguage("en");
 console.log(hgts.t("non.existent.key")); // Output: non.existent.key (returns key when not found)
+
+// 9. Pluralization examples
+console.log("\n=== Pluralization Examples ===");
+console.log(hgts.t("items", { count: 0 })); // Output: No items
+console.log(hgts.t("items", { count: 1 })); // Output: 1 item
+console.log(hgts.t("items", { count: 5 })); // Output: 5 items
+console.log(hgts.t("items", { count: 100 })); // Output: 100 items
+
+console.log(hgts.t("notifications", { count: 0 })); // Output: You have no notifications
+console.log(hgts.t("notifications", { count: 1 })); // Output: You have 1 notification
+console.log(hgts.t("notifications", { count: 10 })); // Output: You have 10 notifications
+
+// 10. Pluralization in different languages
+hgts.changeLanguage("es");
+console.log("\n=== Pluralización en Español ===");
+console.log(hgts.t("items", { count: 0 })); // Output: Sin artículos
+console.log(hgts.t("items", { count: 1 })); // Output: 1 artículo
+console.log(hgts.t("items", { count: 5 })); // Output: 5 artículos
+
+hgts.changeLanguage("fr");
+console.log("\n=== Pluralisation en Français ===");
+console.log(hgts.t("items", { count: 0 })); // Output: Aucun article
+console.log(hgts.t("items", { count: 1 })); // Output: 1 article
+console.log(hgts.t("items", { count: 5 })); // Output: 5 articles

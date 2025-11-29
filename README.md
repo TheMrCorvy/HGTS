@@ -9,6 +9,7 @@ A lightweight, type-safe internationalization (i18n) library for JavaScript and 
 - 🌍 **Multi-language support** - Seamlessly switch between multiple languages
 - 🔄 **Automatic fallback** - Falls back to default language when translations are missing
 - 📝 **Variable interpolation** - Dynamic values in your translations using `{{variable}}` syntax
+- 🔢 **Pluralization** - Smart singular/plural handling with language-specific rules
 - 🎯 **Type-safe** - Full TypeScript support with type definitions
 - 🪝 **React Hook** - Built-in `useTranslation()` hook for React applications
 - 🔑 **Nested keys** - Support for deeply nested translation objects with dot notation
@@ -145,6 +146,7 @@ Initialize HGTS with your translation resources.
 - `options.resources` (required): Object containing translations organized by locale
 - `options.defaultLocale` (optional): Default language code (default: `'en'`)
 - `options.fallbackLocale` (optional): Fallback language when translation is missing (default: same as `defaultLocale`)
+- `options.pluralRule` (optional): Custom function for plural form resolution
 
 **Example:**
 
@@ -167,7 +169,7 @@ Translate a key with optional variable interpolation.
 **Parameters:**
 
 - `key`: Translation key (supports dot notation for nested keys)
-- `params` (optional): Object with variables for interpolation
+- `params` (optional): Object with variables for interpolation. Use `count` for pluralization
 
 **Returns:** Translated string or the key if translation not found
 
@@ -177,6 +179,7 @@ Translate a key with optional variable interpolation.
 hgts.t("greeting"); // "Hello!"
 hgts.t("welcome", { name: "John" }); // "Welcome, John!"
 hgts.t("nested.deep.value"); // Accesses nested.deep.value
+hgts.t("items", { count: 5 }); // "5 items" (plural form)
 hgts.t("missing.key"); // "missing.key" (returns key when not found)
 ```
 
@@ -292,6 +295,83 @@ hgts.t("greeting", { firstName: "John", lastName: "Doe" });
 // "Hello, John Doe!"
 ```
 
+### Pluralization
+
+HGTS supports smart pluralization with language-specific rules using the native `Intl.PluralRules` API. Simply pass a `count` parameter, and HGTS will automatically select the correct plural form.
+
+**Supported plural forms:**
+
+- `zero` - Used when count is 0 (optional)
+- `one` - Used when count is 1
+- `two` - Used when count is 2 (optional, for languages like Arabic)
+- `few` - Used for small numbers (optional, for Slavic languages)
+- `many` - Used for larger numbers (optional)
+- `other` - Default form (required)
+
+**Example:**
+
+```javascript
+hgts.setup({
+  resources: {
+    en: {
+      items: {
+        zero: "No items",
+        one: "{{count}} item",
+        other: "{{count}} items",
+      },
+      notifications: {
+        zero: "You have no notifications",
+        one: "You have {{count}} notification",
+        other: "You have {{count}} notifications",
+      },
+    },
+    es: {
+      items: {
+        zero: "Sin artículos",
+        one: "{{count}} artículo",
+        other: "{{count}} artículos",
+      },
+    },
+  },
+  defaultLocale: "en",
+});
+
+// English pluralization
+hgts.t("items", { count: 0 }); // "No items"
+hgts.t("items", { count: 1 }); // "1 item"
+hgts.t("items", { count: 5 }); // "5 items"
+
+// Spanish pluralization
+hgts.changeLanguage("es");
+hgts.t("items", { count: 0 }); // "Sin artículos"
+hgts.t("items", { count: 1 }); // "1 artículo"
+hgts.t("items", { count: 5 }); // "5 artículos"
+```
+
+**How it works:**
+
+- When you pass a `count` parameter, HGTS automatically detects this is a plural translation
+- It uses `Intl.PluralRules` to determine which plural form to use based on the current language
+- Different languages have different pluralization rules (e.g., English: one/other, Polish: one/few/many/other)
+- Falls back to `other` if the specific form is not provided
+- You can provide a custom plural rule function in setup options if needed
+
+**Custom plural rules (advanced):**
+
+```javascript
+hgts.setup({
+  resources: {
+    /* ... */
+  },
+  pluralRule: (count, locale) => {
+    // Custom logic
+    if (count === 0) return "zero";
+    if (count === 1) return "one";
+    return "other";
+  },
+});
+```
+
 ### Fallback Behavior
 
 ```javascript
@@ -342,11 +422,24 @@ function LanguageSwitcher() {
 HGTS is written in TypeScript and includes full type definitions.
 
 ```typescript
-import { hgts, HGTSOptions, Translations, InterpolationParams } from "hgts";
+import {
+  hgts,
+  HGTSOptions,
+  Translations,
+  InterpolationParams,
+  PluralTranslation,
+} from "hgts";
 
 const options: HGTSOptions = {
   resources: {
-    en: { greeting: "Hello!" },
+    en: {
+      greeting: "Hello!",
+      items: {
+        zero: "No items",
+        one: "{{count}} item",
+        other: "{{count}} items",
+      },
+    },
   },
   defaultLocale: "en",
 };
@@ -358,6 +451,7 @@ const params: InterpolationParams = {
 
 hgts.setup(options);
 const translation: string = hgts.t("greeting", params);
+const pluralTranslation: string = hgts.t("items", { count: 5 });
 ```
 
 ## 📂 Project Structure
