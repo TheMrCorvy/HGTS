@@ -435,7 +435,7 @@ function LanguageSwitcher() {
 
 ## 📁 Multi-File Usage
 
-Thanks to the **Singleton pattern**, you only need to call `setup()` once at your application's entry point. All other files can use `hgts` or `useTranslation()` without calling setup again.
+Thanks to the **Singleton pattern**, you only need to call `setup()` once at your application's entry point. All other files can use the `hgts` or `useTranslation()` without calling setup again.
 
 ### Node.js / TypeScript Example
 
