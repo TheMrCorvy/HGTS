@@ -1,0 +1,5 @@
+- Add unit testing.
+- Add pre-push and pre-commit hooks to prevent pushing something that may break in consuming apps.
+- Remove France (change the french language from the example, I definetly do not mean it in a literal way) and replace it with Japanese.
+- Add support for markdown to HTML translation in the case the developer wants to add styling to a specific text.
+- Add a script to auto-publish on push.
