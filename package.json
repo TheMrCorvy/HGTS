@@ -45,7 +45,7 @@
         "check:deps": "node scripts/check-deps.js",
         "format": "prettier --write \"src/**/*.{ts,tsx,js,json}\" \"example/**/*.{ts,tsx,js,json}\" \"*.{md,json}\"",
         "format:check": "prettier --check \"src/**/*.{ts,tsx,js,json}\" \"example/**/*.{ts,tsx,js,json}\" \"*.{md,json}\"",
-        "prepublishOnly": "npm run check:deps && npm run build"
+        "prepublish-only": "pnpm check:deps && pnpm build"
     },
     "devDependencies": {
         "@types/node": "^20.12.12",
