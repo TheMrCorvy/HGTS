@@ -19,7 +19,7 @@ A lightweight, type-safe internationalization (i18n) library for JavaScript and 
 ## 📦 Installation
 
 ```bash
-npm install hgts
+pnpm add hgts
 ```
 
 ```bash
@@ -35,7 +35,7 @@ pnpm add hgts
 If you want to use the React hook (`useTranslation`), React is already a peer dependency. Just make sure you have React installed in your project:
 
 ```bash
-npm install react
+pnpm add react
 ```
 
 **Note:** The React hook is completely optional. HGTS works perfectly in Node.js, vanilla JavaScript, or any other environment without React.
@@ -591,20 +591,20 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Build the project
-npm run build
+pnpm build
 
 # Check dependencies (ensures zero runtime deps)
-npm run check:deps
+pnpm check:deps
 ```
 
 ### Guidelines
 
 - Keep the core library with **zero runtime dependencies**
 - Add React-specific features only to `src/react.ts`
-- Run `npm run check:deps` before committing
+- Run `pnpm check:deps` before committing
 - Update documentation for new features
 
 ## 📄 License

@@ -35,7 +35,7 @@ React is configured as an **optional peer dependency**:
 1. **Without React:**
 
     ```bash
-    npm install hgts
+    pnpm add hgts
     # Works perfectly! No warnings about missing React
     ```
 
@@ -47,7 +47,7 @@ React is configured as an **optional peer dependency**:
 2. **With React:**
 
     ```bash
-    npm install hgts
+    pnpm add hgts
     # React is already in your project
     ```
 
