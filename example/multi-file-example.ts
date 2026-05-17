@@ -5,8 +5,8 @@
  * 2. Then import and use modules that consume translations
  */
 
-// Step 1: Initialize i18n configuration FIRST
-import "./config/i18n.config";
+// Step 1: Initialize HGTS configuration FIRST
+import "./config/translation.config";
 
 // Step 2: Import modules that use translations
 import { UserService } from "./modules/user.service";
