@@ -3,3 +3,17 @@
 - Remove France (change the french language from the example, I definetly do not mean it in a literal way) and replace it with Japanese.
 - Add support for markdown to HTML translation in the case the developer wants to add styling to a specific text.
 - Add a script to auto-publish on push.
+- Add support for vue js.
+- Add support for angular
+- Provide adapters/plugins for svelte and solid js
+- Add cli to extract and handle translation files
+- Add async/remote loading of translation resources (lazy loading)
+- Integrate ICU MessageFormat for advanced pluralization and formatting
+- Support component interpolation (e.g., React/Vue nodes inside translations)
+- Add compile-time translation key validation
+- Improve documentation with examples for all supported frameworks
+- Add contextual translations (gender, formality, etc.)
+- Integrate with external localization tools (Phrase, Lokalise, Crowdin, etc.)
+- Add support for translation namespaces/modules
+- Support multi-level fallback (cascading fallback locales)
+- Add integration tests for all supported frameworks
