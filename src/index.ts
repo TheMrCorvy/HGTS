@@ -191,7 +191,7 @@ class HGTS {
      * @param obj - The object to check
      * @returns True if the object contains plural forms
      */
-    private isPluralObject(obj: any): boolean {
+    private isPluralObject(obj: Record<string, unknown>): boolean {
         if (typeof obj !== "object" || obj === null) {
             return false;
         }
