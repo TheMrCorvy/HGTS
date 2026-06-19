@@ -1,7 +1,6 @@
-import { execSync } from "child_process";
-import fs from "fs";
-import path from "path";
-
+const { execSync } = require("child_process");
+const fs = require("fs");
+const path = require("path");
 // Helper to run shell commands with full stdio inheritance (enables interactive login/publish)
 function runCommand(command) {
     try {
