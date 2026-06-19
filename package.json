@@ -1,5 +1,5 @@
 {
-    "name": "hgts",
+    "name": "@salvatore.hakase/hgts",
     "version": "1.0.2",
     "description": "The holy grail translation system from Fate series brought to real life by the Chaldea Foundation.",
     "keywords": [
@@ -45,7 +45,8 @@
         "check:deps": "node scripts/check-deps.js",
         "format": "prettier --write \"src/**/*.{ts,tsx,js,json}\" \"example/**/*.{ts,tsx,js,json}\" \"*.{md,json}\"",
         "format:check": "prettier --check \"src/**/*.{ts,tsx,js,json}\" \"example/**/*.{ts,tsx,js,json}\" \"*.{md,json}\"",
-        "prepublishOnly": "pnpm check:deps && pnpm build"
+        "prepublishOnly": "pnpm check:deps && pnpm build",
+        "release": "node scripts/release.js"
     },
     "devDependencies": {
         "@types/node": "^20.12.12",
