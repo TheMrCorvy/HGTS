@@ -6,7 +6,7 @@ function runCommand(command) {
     try {
         execSync(command, { stdio: "inherit", shell: true });
         return true;
-    } catch (error) {
+    } catch (_error) {
         return false;
     }
 }
@@ -19,7 +19,7 @@ function captureCommand(command) {
             encoding: "utf8",
             shell: true,
         }).trim();
-    } catch (error) {
+    } catch (_error) {
         return null;
     }
 }
@@ -68,7 +68,7 @@ if (versionsRaw) {
     try {
         const parsed = JSON.parse(versionsRaw);
         publishedVersions = Array.isArray(parsed) ? parsed : [parsed];
-    } catch (e) {
+    } catch (_e) {
         // If it's a single version string not parsed as array
         if (versionsRaw.trim()) {
             publishedVersions = [versionsRaw.replace(/"/g, "").trim()];

@@ -27,6 +27,7 @@ export function useTranslation() {
         (key: string, params?: InterpolationParams): string => {
             return hgts.t(key, params);
         },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [language]
     );
 

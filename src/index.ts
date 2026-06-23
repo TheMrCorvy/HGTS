@@ -217,7 +217,7 @@ class HGTS {
             try {
                 const pluralRules = new Intl.PluralRules(this.currentLocale);
                 pluralForm = pluralRules.select(count) as PluralForm;
-            } catch (e) {
+            } catch (_e) {
                 // Fallback to simple English-like rules if Intl.PluralRules fails
                 pluralForm = this.getDefaultPluralForm(count);
             }
